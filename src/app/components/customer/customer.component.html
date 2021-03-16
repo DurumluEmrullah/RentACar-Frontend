@@ -1,0 +1,20 @@
+<table  class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">İsim</th>
+        <th scope="col">Soyisim</th>
+        <th scope="col">Email</th>
+        <th scope="col">Şirket</th>
+      
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let customer of customers">
+        <td scope="row"> {{customer.firstName }}</td>
+        <td> {{customer.lastName }} </td>
+        <td> {{customer.email }}  </td>
+        <td> {{customer.companyName }}  </td>
+    
+      </tr>
+    </tbody>
+  </table>

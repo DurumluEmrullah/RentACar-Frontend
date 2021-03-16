@@ -1,0 +1,18 @@
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">Araba</th>
+      <th scope="col">Müşteri Adı ve Soyadı</th>
+      <th scope="col">Kiralama Tarihi</th>
+      <th scope="col">Aracın Dönüş Tarihi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let rental of rentals">
+      <td>{{ rental.carName }}</td>
+      <td>{{ rental.customerName }}</td>
+      <td>{{ rental.rentDate }}</td>
+      <td>{{ rental.returnDate }}</td>
+    </tr>
+  </tbody>
+</table>

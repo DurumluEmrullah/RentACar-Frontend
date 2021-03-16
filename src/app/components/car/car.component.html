@@ -1,0 +1,23 @@
+<div class="row">
+  <div *ngFor="let car of cars" class="col-md-4">
+    <div class="card mt-3">
+      <img src="../../img/exp.jpg" class="card-img-top"/>
+      <hr>
+      <div class="card-body">
+        <h5 class="card-title">{{ car.carName }}</h5>
+        <p class="card-text">{{ car.description }}</p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><b>Markası : </b>{{car.brandName}}</li>
+        <li class="list-group-item"><b>Rengi : </b>{{car.colorName}}</li>
+        <li class="list-group-item"><b>Model Yılı : </b> {{car.modelYear}}</li>
+        <li class="list-group-item"><b>Günlük Ücret : </b> {{car.dailyPrice}} TL</li>
+      </ul>
+      <div class="card-footer">
+        <div class="btn btn-sm btn-primary">Aracı Kirala</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
