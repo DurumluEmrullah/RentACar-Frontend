@@ -10,6 +10,7 @@ import { NaviComponent } from './components/navi/navi.component';
 import { CustomerComponent } from './components/customer/customer.component';
 import { CarComponent } from './components/car/car.component';
 import { RentalComponent } from './components/rental/rental.component';
+import { CarDetailComponent } from './components/cardetail/cardetail.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { RentalComponent } from './components/rental/rental.component';
     CustomerComponent,
     CarComponent,
     RentalComponent,
+    CarDetailComponent,
    
  
   ],
