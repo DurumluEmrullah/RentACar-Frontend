@@ -33,7 +33,7 @@ export class BrandComponent implements OnInit {
       return "list-group-item bg-secondary text-white selected";
     }
     else{
-      return "list-group-item bg-secondary text-white";
+      return "list-group-item";
     }
   }
 
@@ -46,7 +46,7 @@ export class BrandComponent implements OnInit {
       return "list-group-item bg-secondary text-white selected";
     }
     else{
-      return "list-group-item bg-secondary text-white";
+      return "list-group-item";
     }
   }
 

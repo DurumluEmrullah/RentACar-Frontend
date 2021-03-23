@@ -30,7 +30,7 @@ export class ColorComponent implements OnInit {
       return "list-group-item bg-secondary text-white selected-color";
     }
     else{
-      return "list-group-item bg-secondary text-white";
+      return "list-group-item";
     }
 
   }
@@ -44,10 +44,10 @@ export class ColorComponent implements OnInit {
 
   getAllColorClass(){
     if(this.currentColor.colorId==0){
-      return "list-group-item bg-secondary text-white selected-color";
+      return "list-group-item bg-secondary selected-color";
     }
     else{
-      return "list-group-item bg-secondary text-white";
+      return "list-group-item ";
     }
   }
 

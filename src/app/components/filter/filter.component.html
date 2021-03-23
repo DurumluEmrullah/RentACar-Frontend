@@ -1,0 +1,22 @@
+<div class="card mb-3">
+  <div class="card-header">Filtre</div>
+  <div class="card-body">
+
+
+    <select [(ngModel)]="selectedColor" class="form-select mb-3" aria-label="Default select example">
+      <option selected>Renk Seç</option>
+      <option *ngFor="let color of colors" value="{{ color.colorId }}">
+        {{ color.colorName }}
+      </option>
+    </select>
+
+    <select [(ngModel)]="selectedBrand" class="form-select mb-3" aria-label="Default select example">
+        <option selected>Marka Seç</option>
+        <option *ngFor="let brand of brands" value="{{ brand.brandId }}">{{brand.brandName}}</option>
+      </select>
+      
+  </div>
+  <div class="card-header">
+    <a  class="btn btn-success" style="display: block" routerLink="/cars/filter/{{selectedColor}}/{{selectedBrand}}">Filtrele</a>
+  </div>
+</div>

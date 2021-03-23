@@ -13,8 +13,8 @@
     <tr *ngFor="let rental of rentals">
       <td>{{ rental.carName }}</td>
       <td>{{ rental.customerName }}</td>
-      <td>{{ rental.rentDate }}</td>
-      <td>{{ rental.returnDate }}</td>
+      <td>{{ rental.rentDate |date}}</td>
+      <td>{{ rental.returnDate |date }}</td>
     </tr>
   </tbody>
 </table>
