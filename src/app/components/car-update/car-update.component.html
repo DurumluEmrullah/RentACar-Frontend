@@ -1,0 +1,79 @@
+<div class="card">
+    <div class="card-header">Araba Güncelleme</div>
+    <div class="card-body">
+        <form [formGroup]="updateCarForm">
+            <div class="row mb-3">
+              <div class="col-6">
+                <label for="colorId">Yeni Renk</label>
+                <select
+                  formControlName="colorId"
+                  id="colorId"
+                  class="form-select mb-3"
+                  aria-label="Default select example"
+                >
+                  <option *ngFor="let color of colors" value="{{ color.colorId }}">
+                    {{ color.colorName }}
+                  </option>
+                </select>
+              </div>
+      
+              <div class="col-6">
+                <label for="brandId">Yeni Marka</label>
+                <select
+                  formControlName="brandId"
+                  id="brandId"
+                  class="form-select mb-3"
+                  aria-label="Default select example"
+                >
+                  <option *ngFor="let brand of brands" value="{{ brand.brandId }}">
+                    {{ brand.brandName }}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="carName">Yeni Araba Adı</label>
+              <input
+                type="text"
+                class="form-control"
+                id="carName"
+                value="{{updateCar.carName}}"
+                formControlName="carName"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="modelYear">Yeni Model Yılı</label>
+              <input
+                type="number"
+                class="form-control"
+                id="modelYear"
+                value="{{updateCar.modelYear}}"
+                formControlName="modelYear"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="dailyPrice">Yeni Günlük Fiyatı</label>
+              <input
+                type="number"
+                class="form-control"
+                id="dailyPrice"
+                value="{{updateCar.dailyPrice}}"
+                formControlName="dailyPrice"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="description">Yeni Açıklama</label>
+              <input
+                type="text"
+                class="form-control"
+                id="description"
+                value="{{updateCar.description}}"
+                formControlName="description"
+              />
+            </div>
+          </form>
+    </div>
+    <div class="card-header">
+        <button class="btn btn-primary" style="width: 100%;" (click)="update()">Güncelle</button>
+    </div>
+</div>

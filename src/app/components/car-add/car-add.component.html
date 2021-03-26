@@ -1,0 +1,79 @@
+<div class="card">
+  <div class="card-header">Yeni Araba Ekle</div>
+
+  <div class="card-body">
+    <form [formGroup]="carAddForm">
+      <div class="row mb-3">
+        <div class="col-6">
+          <label for="colorId">Renk</label>
+          <select
+            formControlName="colorId"
+            id="colorId"
+            class="form-select mb-3"
+            aria-label="Default select example"
+          >
+            <option *ngFor="let color of colors" value="{{ color.colorId }}">
+              {{ color.colorName }}
+            </option>
+          </select>
+        </div>
+
+        <div class="col-6">
+          <label for="brandId">Marka</label>
+          <select
+            formControlName="brandId"
+            id="brandId"
+            class="form-select mb-3"
+            aria-label="Default select example"
+          >
+            <option *ngFor="let brand of brands" value="{{ brand.brandId }}">
+              {{ brand.brandName }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="carName">Araba Adı</label>
+        <input
+          type="text"
+          class="form-control"
+          id="carName"
+          formControlName="carName"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="modelYear">Model Yılı</label>
+        <input
+          type="number"
+          class="form-control"
+          id="modelYear"
+          formControlName="modelYear"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="dailyPrice">Günlük Fiyatı</label>
+        <input
+          type="number"
+          class="form-control"
+          id="dailyPrice"
+          formControlName="dailyPrice"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="description">Açıklama</label>
+        <input
+          type="text"
+          class="form-control"
+          id="description"
+          formControlName="description"
+        />
+      </div>
+    </form>
+  </div>
+
+  <div class="card-footer">
+    <button class="btn btn-primary" style="width: 100%" (click)="add()">
+      Ekle
+    </button>
+  </div>
+</div>

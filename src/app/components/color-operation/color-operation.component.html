@@ -1,0 +1,58 @@
+<div class="alert alert-success text-center">
+    Renk İşlemleri
+</div>
+<div class="container">
+<table class="table  table-bordered table-hover">
+    <thead>
+      <tr>
+        <th scope="col" style="width: 20%;">ID</th>
+        <th scope="col" style="width: 40%;">Renk</th>
+        <th></th>
+      
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let color of colors">
+        <th scope="row">{{color.colorId}}</th>
+        <td>{{color.colorName}}</td>
+        <td>
+            <div class="d-flex justify-content-center">
+            <button type="button" class="btn btn-primary px-4" style="margin-right: 20px;" data-bs-toggle="modal" data-bs-target="#updateModal" (click)="setSelectedColor(color)">Güncelle</button>
+            <button class="btn btn-danger px-5" (click)="deleteColor(color)">Sil</button>
+        </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Renk Güncelle</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="colorUpdateForm">
+          <div class="row">
+            <div class="col-4">
+              <label for="colorId">Id</label>
+              <input type="number" class="form-control" *ngIf="selectedColor" id="colorId" name="colorId" formControlName="colorId" value="{{selectedColor.colorId}}" readonly>
+            </div>
+            <div class="col-8">
+              <label for="colorName">Renk</label>
+              <input type="text" class="form-control" *ngIf="selectedColor" id="colorName" formControlName="colorName" value="{{selectedColor.colorName}}">
+            </div>
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button class="btn btn-primary" (click)="updateColor()" data-bs-dismiss="modal" >Kaydet</button>
+      </div>
+    </div>
+  </div>
+</div>

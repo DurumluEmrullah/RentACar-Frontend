@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { Car } from 'src/app/models/car';
+import { CarDto } from 'src/app/models/carDto';
 import { CreditCard } from 'src/app/models/creditCard';
 import { Rental } from 'src/app/models/rental';
 import { PaymentService } from 'src/app/services/payment.service';
@@ -13,7 +13,7 @@ import { RentalService } from 'src/app/services/rental.service';
 })
 export class PaymentComponent implements OnInit {
   rental:Rental;
-  car:Car;
+  car:CarDto;
   countOfRentDay:number;
   operationResult:string;
   routerLink:string;

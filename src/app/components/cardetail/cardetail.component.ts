@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Car } from 'src/app/models/car';
+import { CarDto } from 'src/app/models/carDto';
 import { CarImage } from 'src/app/models/carImage';
 import { Rental } from 'src/app/models/rental';
 import { CarImageService } from 'src/app/services/car-image.service';
@@ -14,7 +14,7 @@ import { RentalService } from 'src/app/services/rental.service';
   styleUrls: ['./cardetail.component.css'],
 })
 export class CarDetailComponent implements OnInit {
-  car: Car;
+  car: CarDto;
   carImages: CarImage[];
   dataLoaded: boolean = false;
   currentImage: CarImage;
@@ -57,7 +57,7 @@ export class CarDetailComponent implements OnInit {
   }
 
   getCarById(carId: number) {
-    this.carService.getCarById(carId).subscribe((response) => {
+    this.carService.getCarDtoById(carId).subscribe((response) => {
       this.car = response.data;
       this.dataLoaded = true;
     });

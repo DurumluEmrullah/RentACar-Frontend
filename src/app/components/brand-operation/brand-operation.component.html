@@ -1,0 +1,58 @@
+<div class="alert alert-success text-center">
+    Renk İşlemleri
+</div>
+<div class="container">
+<table class="table  table-bordered table-hover">
+    <thead>
+      <tr>
+        <th scope="col" style="width: 20%;">ID</th>
+        <th scope="col" style="width: 40%;">Marka</th>
+        <th></th>
+      
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let brand of brands">
+        <th scope="row">{{brand.brandId}}</th>
+        <td>{{brand.brandName}}</td>
+        <td>
+            <div class="d-flex justify-content-center">
+            <button type="button" class="btn btn-primary px-4" style="margin-right: 20px;" data-bs-toggle="modal" data-bs-target="#updateModal" (click)="setSelectedBrand(brand)">Güncelle</button>
+            <button class="btn btn-danger px-5" (click)="deleteBrand(brand)">Sil</button>
+        </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Marka Güncelle</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="brandUpdateForm">
+          <div class="row">
+            <div class="col-4">
+              <label for="colorId">Id</label>
+              <input type="number" class="form-control" *ngIf="selectedBrand" id="brandId" name="brandId" formControlName="brandId" value="{{selectedBrand.brandId}}" readonly>
+            </div>
+            <div class="col-8">
+              <label for="colorName">Marka</label>
+              <input type="text" class="form-control" *ngIf="selectedBrand" id="brandName" formControlName="brandName" value="{{selectedBrand.brandName}}">
+            </div>
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button class="btn btn-primary" (click)="updateBrand()" data-bs-dismiss="modal" >Kaydet</button>
+      </div>
+    </div>
+  </div>
+</div>

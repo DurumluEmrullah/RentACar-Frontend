@@ -18,6 +18,16 @@ import { PaymentComponent } from './components/payment/payment.component';
 import { ToastrModule } from 'ngx-toastr';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { TotalPricePipe } from './pipes/total-price.pipe';
+import { CarAddComponent } from './components/car-add/car-add.component';
+import { BrandAddComponent } from './components/brand-add/brand-add.component';
+import { ColorAddComponent } from './components/color-add/color-add.component';
+import { AddMenuComponent } from './components/add-menu/add-menu.component';
+import { UpdateAndDeleteComponent } from './components/update-and-delete/update-and-delete.component';
+import { BrandOperationComponent } from './components/brand-operation/brand-operation.component';
+import { ColorOperationComponent } from './components/color-operation/color-operation.component';
+import { CarOperationComponent } from './components/car-operation/car-operation.component';
+import { CarUpdateComponent } from './components/car-update/car-update.component';
+
 
 @NgModule({
   declarations: [
@@ -33,6 +43,15 @@ import { TotalPricePipe } from './pipes/total-price.pipe';
     FilterComponent,
     PaymentComponent,
     TotalPricePipe,
+    AddMenuComponent,
+    CarAddComponent,
+    BrandAddComponent,
+    ColorAddComponent,
+    UpdateAndDeleteComponent,
+    BrandOperationComponent,
+    ColorOperationComponent,
+    CarOperationComponent,
+    CarUpdateComponent
    
  
   ],
