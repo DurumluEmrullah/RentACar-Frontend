@@ -43,7 +43,7 @@ export class CarUpdateComponent implements OnInit {
   createForm()
   {
     this.updateCarForm=this.formBuilder.group({
-      brandId:[this.updateCar.brandId,Validators.required],
+      brandId:["",Validators.required],
       colorId:["",Validators.required],
       carName:["",Validators.required],
       modelYear:["",Validators.required],
