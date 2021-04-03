@@ -11,7 +11,9 @@ import { ColorAddComponent } from './components/color-add/color-add.component';
 import { ColorOperationComponent } from './components/color-operation/color-operation.component';
 import { CustomerComponent } from './components/customer/customer.component';
 import { PaymentComponent } from './components/payment/payment.component';
+import { ProfileComponent } from './components/profile/profile.component';
 import { RentalComponent } from './components/rental/rental.component';
+import { SetingsComponent } from './components/setings/setings.component';
 
 const routes: Routes = [
   { path: '', pathMatch:'full', component: CarComponent },
@@ -29,7 +31,9 @@ const routes: Routes = [
   { path: 'colors/add',component: ColorAddComponent },
   { path: 'brands/add',component: BrandAddComponent },
   { path: 'brands',component: BrandOperationComponent },
-  { path: 'colors',component: ColorOperationComponent }
+  { path: 'colors',component: ColorOperationComponent },
+  { path: 'profile',component: ProfileComponent },
+  { path: 'setings',component: SetingsComponent }
 
 ];
 

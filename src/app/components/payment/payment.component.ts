@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { CarDto } from 'src/app/models/carDto';
 import { CreditCard } from 'src/app/models/creditCard';
+import { CreditCardResponse } from 'src/app/models/creditCardResponse';
+import { RegisterCreditCardModel } from 'src/app/models/registerCreditCardModel';
 import { Rental } from 'src/app/models/rental';
+import { CreditcardService } from 'src/app/services/creditcard.service';
 import { PaymentService } from 'src/app/services/payment.service';
 import { RentalService } from 'src/app/services/rental.service';
 
@@ -22,12 +25,18 @@ export class PaymentComponent implements OnInit {
   mounthOfExpirationDate:string;
   securityNumber:string;
   cardNumber:string;
+  registerCreditCard:RegisterCreditCardModel={cardNumber:"",mounthOfExpirationDate:"",yearOfExpirationDate:"",customerId:0,securityNumber:""};;
+  isSuccess:boolean=false;
+  creditCardsResponse:CreditCardResponse[];
+  haveCreditCard:boolean=false;
+  selectedCard:CreditCardResponse;
   
   
 
   constructor(private rentalService:RentalService,
     private toastrService:ToastrService,
-    private paymentService:PaymentService) { }
+    private paymentService:PaymentService,
+    private creditcardService:CreditcardService) { }
 
 
   ngOnInit(): void {
@@ -40,6 +49,7 @@ export class PaymentComponent implements OnInit {
 
     this.countOfRentDay= Math.abs(returnDate.getTime()-rentDate.getTime());
     this.countOfRentDay=Math.ceil(this.countOfRentDay/(1000*3600*24));
+    this.getCreditCard();
     
   }
 
@@ -51,9 +61,6 @@ export class PaymentComponent implements OnInit {
     this.creditCard.securityNumber=this.securityNumber;
     this.creditCard.amount= this.countOfRentDay*this.car.dailyPrice;
     this.paymentOperation(this.creditCard);
-
-
-    
   }
 
   refundMoney(creditCard:CreditCard){
@@ -62,8 +69,42 @@ export class PaymentComponent implements OnInit {
         this.toastrService.success("Paranız İade Edilmiştir","Başarılı");
       }
       else{
-        this.toastrService.error("Bizim Sistemimizde Bir Hata Yok Ama Banka Sisteminde Bir Hata Olabilir Paranız İade Edilemedi","Hata");
+        this.toastrService.error("Bir hata oluştu paranız yakın zamanda iade edilecektir","Hata");
       }
+    })
+  }
+
+  getCardInformation(creditCard:CreditCardResponse){
+    console.log(this.selectedCard)
+    this.cardNumber=creditCard.cardNumber;
+    this.securityNumber=creditCard.securityNumber;
+    this.mounthOfExpirationDate=creditCard.mounthOfExpirationDate;
+    this.yearOfExpirationDate=creditCard.yearOfExpirationDate;
+    console.log("merhabaaaaa")
+  }
+
+  registerCardInformation(){
+    this.registerCreditCard.customerId=this.rental.customerId;
+    this.registerCreditCard.cardNumber=this.cardNumber;
+    this.registerCreditCard.securityNumber=this.securityNumber;
+    this.registerCreditCard.yearOfExpirationDate=this.yearOfExpirationDate;
+    this.registerCreditCard.mounthOfExpirationDate=this.mounthOfExpirationDate;
+  
+    this.creditcardService.registerCreditCard(this.registerCreditCard).subscribe(response=>{
+      this.toastrService.info("kart bilgileri kayıt edildi");
+      this.isSuccess=false;
+    })
+  }
+
+  getCreditCard(){
+    this.creditcardService.getCreditCardByCustomerId(this.rental.customerId).subscribe(response=>{
+      console.log(response);
+
+      if(response.data.length>0){
+        this.haveCreditCard=true;
+      }
+      this.creditCardsResponse=response.data
+      console.log("Merhaba dünya" +this.haveCreditCard)
     })
   }
 
@@ -94,6 +135,7 @@ export class PaymentComponent implements OnInit {
     this.paymentService.buy(this.creditCard).subscribe(response=>{
       this.toastrService.success("Ödemi İşlemi Başarı ile Gerçekleştirilmiştir","Ödeme Tamamlandı")
       this.createRental();
+      this.isSuccess=true;
       
     },responseError=>{
       console.log(responseError)
@@ -116,11 +158,12 @@ export class PaymentComponent implements OnInit {
           'Başarılı'
         );
         
+        
       },
       (responseError) => {
+        console.log(responseError);
         this.toastrService.error(
-          'Araç Başkası tarafından kiralanmıştır. Paranız iade ediliyor... Lütfen Başka Bir Araç Seçiniz..',
-          'İşlem Başarısız'
+          responseError.error
         );
         this.refundMoney(this.creditCard);
      

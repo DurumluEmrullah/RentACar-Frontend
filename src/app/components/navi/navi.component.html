@@ -1,16 +1,189 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-secondary p-3">
-    <div class="container-fluid">
-      <a class="navbar-brand" routerLink="">Rent a Car  App</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav" style="margin-left: auto;">
-          <a class="nav-link active" aria-current="page" routerLink="">Ana Sayfa</a>
-          <a class="nav-link" routerLink="/customers">Müşteriler</a>
-          <a class="nav-link" routerLink="/rentals">Kiralanan Arabalar</a>
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+<nav class="navbar navbar-expand-md navbar-dark bg-info p-3">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="">Rent a Car App</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav" style="margin-left: auto">
+        <a class="nav-link active" aria-current="page" routerLink=""
+          >Ana Sayfa</a
+        >
+        <a class="nav-link" routerLink="/customers">Müşteriler</a>
+        <a class="nav-link" routerLink="/rentals">Kiralanan Arabalar</a>
+        <!-- Giriş yapılmamış ise-->
+        <div *ngIf="isAuthenticated()==false">
+          <a
+            class="nav-link text-white btn btn-outline-primary"
+            style="display: inline-block"
+            href="#"
+            tabindex="-1"
+            aria-disabled="true"
+            data-bs-toggle="modal"
+            data-bs-target="#loginModal"
+            >Giriş Yap</a
+          >
+          <a
+            class="nav-link text-white mx-1 btn btn-warning"
+            style="display: inline-block"
+            href="#"
+            tabindex="-1"
+            aria-disabled="true"
+            data-bs-toggle="modal"
+            data-bs-target="#registerModal"
+            >Kayıt Ol</a
+          >
+        </div>
+        <!--Giriş Yapılmış ise-->
+        <div *ngIf="isAuthenticated()==true">
+
+          <div class="dropdown">
+            <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+             {{userInformation.firstName+" "+userInformation.lastName}}
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item px-5" routerLink="/profile">Profil</a></li>
+              <li><a class="dropdown-item px-5" routerLink="/setings">Ayarlar</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li class="d-flex justify-content-center"><a class="btn btn-danger" (click)="logOut()" [routerLink]="['/']" routerLinkActive="router-link-active" >Çıkış Yap</a></li>
+            </ul>
+          </div>
+
         </div>
       </div>
     </div>
-  </nav>
+  </div>
+</nav>
+
+<!--Giriş Yap Canvas-->
+<div
+  class="modal fade"
+  id="loginModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg p-7">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title" id="exampleModalLabel">Giriş Yap</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="loginForm">
+          <h1 class="h3 mb-3 fw-normal">Lütfen Giriş Yapın</h1>
+
+          <div class="form-floating">
+            <input
+              type="text"
+              class="form-control"
+              id="email"
+              placeholder="name@example.com"
+              formControlName="email"
+            />
+            <label for="email">E-posta Adresi</label>
+          </div>
+          <div class="form-floating mt-2">
+            <input
+              type="password"
+              class="form-control"
+              id="floatingPassword"
+              placeholder="Password"
+              formControlName="password"
+            />
+            <label for="floatingPassword">Şifre</label>
+          </div>
+
+          <div class="checkbox my-3">
+            <label>
+              <input type="checkbox" value="remember-me" /> Beni Hatırla
+            </label>
+          </div>
+          <button class="w-100 btn btn-lg btn-primary" data-bs-dismiss="modal" (click)="login()" type="submit">
+            Giriş Yap
+          </button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Register Modal-->
+<div
+  class="modal fade"
+  id="registerModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content  p-5">
+      <div class="modal-header">
+        <h1 class="modal-title" id="exampleModalLabel">Kayıt Ol</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="registerForm">
+          <div class="row">
+            <div class="col-md-6 form-floating">
+              <input type="text" id="firstName" formControlName="firstName" class="form-control" />
+              <label for="firstName">Adınız</label>
+            </div>
+            <div class="col-md-6 form-floating">
+              <input type="text" id="lastName" formControlName="lastName" class="form-control" />
+              <label for="lastName">Soyadınız</label>
+            </div>
+          </div>
+
+          <div class="row mt-3">
+            <div class="form-floating">
+              <input type="text" id="firstName" class="form-control" formControlName="email" />
+              <label for="firstName">E-posta Adresi</label>
+            </div>
+          </div>
+
+          <div class="row mt-3">
+            <div class="form-floating">
+              <input type="password" formControlName="password" id="firstName" class="form-control" />
+              <label for="firstName">Şifre</label>
+            </div>
+          </div>
+
+          <div class="row mt-3">
+            <div class="form-floating">
+              <input [(ngModel)]="repeatPassword" type="password" id="repeatPassword"  class="form-control" [ngModelOptions]="{standalone: true}" />
+              <label for="repeatPassword">Şifre Tekrar</label>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">
+          Kapat
+        </button>
+        <button type="button" class="btn btn-primary" (click)="register()">Kayıt Ol</button>
+      </div>
+    </div>
+  </div>
+</div>

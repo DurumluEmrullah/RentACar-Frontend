@@ -7,4 +7,5 @@ export interface CarDto{
     imagePath:string;
     modelYear:number;
     description:string;
+    findex:number;
 }

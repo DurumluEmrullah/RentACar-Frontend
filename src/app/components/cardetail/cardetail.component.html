@@ -1,35 +1,54 @@
 
-
-  <div class="card">
-    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-inner">
-        <div  [class]= "getCarImageClass(carimageUrl)" *ngFor="let carimageUrl of carImages">
-          <img src="https://localhost:44328/img/{{ carimageUrl.imagePath }}" class="d-block w-100" >
-        </div>
-        
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"  data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"  data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
+<div class="container my-5">
+  <div class="card" style="box-shadow: 10px 10px 10px gray;">
+    <div class="card-header d-flex justify-content-center">
+      <h3 class="card-title">Araç Ayrıntıları</h3>
     </div>
+ 
     <div class="card-body" *ngIf="dataLoaded == true" >
-      <h5 class="card-title">{{ car.carName }}</h5>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item"> <b>Model Yılı : </b> {{car.modelYear}}</li>
-        <li class="list-group-item"><b>Araç Rengi : </b> {{car.colorName}}</li>
-        <li class="list-group-item"><b>Markası : </b> {{car.brandName}}</li>
-        <li class="list-group-item"><b>Günlük Fiyatı : </b> {{car.dailyPrice}}</li>
-      </ul>
-      <p class="card-text">{{car.description}}</p>
-      <button class="btn btn-lg btn-outline-primary mt-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Aracı Kirala</button>
+      <div class="row">
+        <div class="col-6">
+          <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div  [class]= "getCarImageClass(carimageUrl)" *ngFor="let carimageUrl of carImages">
+                <img src="https://localhost:44328/img/{{ carimageUrl.imagePath }}" class="d-block w-100" >
+              </div>
+              
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"  data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"  data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+        </div>
 
-    </div>
+        <div class="col-6">
+          <h3 class="card-title"></h3>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item p-3 d-flex justify-content-center"> <h3> {{ car.carName }} </h3></li>
+            <li class="list-group-item p-3"> <b>Model Yılı : </b> {{car.modelYear}}</li>
+            <li class="list-group-item p-3"><b>Araç Rengi : </b> {{car.colorName}}</li>
+            <li class="list-group-item p-3"><b>Markası : </b> {{car.brandName}}</li>
+            <li class="list-group-item p-3"><b>Günlük Fiyatı : </b> {{car.dailyPrice}}</li>
+            <li class="list-group-item p-3"><b>Açıklama: </b> {{car.description}}</li>
+            <li class="list-group-item p-3"><b>Findex Puanı: </b> {{car.findex}}</li>
+          </ul>
+       
+    
+        </div>
+      </div>
+
+    
   </div>
-
+  <div class="card-footer d-flex justify-content-end">
+  
+    <button class="btn btn-lg btn-outline-primary mt-3 px-5" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Aracı Kirala</button>
+  </div>
+</div>
 
   <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -51,7 +70,7 @@
                 </div>
                 <div class="mb-3">
                   <label for="customerId">Customer Id</label>
-                  <input class="form-control" [(ngModel)]="customerId" type="number" name="" id="customerId" [ngModelOptions]="{standalone: true}">
+                  <input class="form-control" [(ngModel)]="customerId" type="number" name="" id="customerId" [ngModelOptions]="{standalone: true}" readonly>
                 </div>
                 
               </div>

@@ -27,6 +27,8 @@ import { BrandOperationComponent } from './components/brand-operation/brand-oper
 import { ColorOperationComponent } from './components/color-operation/color-operation.component';
 import { CarOperationComponent } from './components/car-operation/car-operation.component';
 import { CarUpdateComponent } from './components/car-update/car-update.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { SetingsComponent } from './components/setings/setings.component';
 
 
 @NgModule({
@@ -51,7 +53,9 @@ import { CarUpdateComponent } from './components/car-update/car-update.component
     BrandOperationComponent,
     ColorOperationComponent,
     CarOperationComponent,
-    CarUpdateComponent
+    CarUpdateComponent,
+    ProfileComponent,
+    SetingsComponent
    
  
   ],

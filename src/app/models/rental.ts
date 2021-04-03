@@ -3,4 +3,5 @@ export interface Rental{
     customerId:number;
     rentDate:Date;
     returnDate:Date;
+    findex:number;
 }

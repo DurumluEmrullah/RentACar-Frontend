@@ -3,4 +3,5 @@ export interface RentalDetail{
     customerName:string;
     rentDate:Date;
     returnDate:Date;
+   
 }

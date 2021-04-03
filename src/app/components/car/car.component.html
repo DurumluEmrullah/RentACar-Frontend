@@ -1,11 +1,90 @@
+<div class="row content">
+  <div class="col-md-3">
+    <app-filter></app-filter>
 
+    <div class="accordion accordion-flush" id="accordionFlushExample">
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="flush-headingUpdate">
+          <button class="accordion-button collapsed"
+           type="button"
+            data-bs-toggle="collapse"
+             data-bs-target="#flush-collapseUpdate"
+              aria-expanded="false"
+               aria-controls="flush-collapseUpdate">
+           Güncelleme Ve Silme
+          </button>
+        </h2>
+        <div id="flush-collapseUpdate" class="accordion-collapse collapse" aria-labelledby="flush-headingUpdate" data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body">
+              
+            <app-update-and-delete></app-update-and-delete>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="flush-headingTwoAdd">
+          <button class="accordion-button collapsed" 
+          type="button" data-bs-toggle="collapse" 
+          data-bs-target="#flush-collapseAdd"
+           aria-expanded="false"
+            aria-controls="flush-collapseAdd">
+           Eleman Ekle
+          </button>
+        </h2>
+        <div id="flush-collapseAdd" class="accordion-collapse collapse" aria-labelledby="flush-headingAdd" data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body">
+              
+            <app-add-menu></app-add-menu>  
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="flush-headingOne">
+          <button
+            class="accordion-button collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#flush-collapseOne"
+            aria-expanded="false"
+            aria-controls="flush-collapseOne"
+          >
+            Markalar
+          </button>
+        </h2>
+        <div
+          id="flush-collapseOne"
+          class="accordion-collapse collapse"
+          aria-labelledby="flush-headingOne"
+          data-bs-parent="#accordionFlushExample"
+        >
+          <div class="accordion-body">
+            <app-brand></app-brand> 
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="flush-headingTwo">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+         Renkler
+        </button>
+      </h2>
+      <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body"><app-color></app-color></div>
+      </div>
+    </div>
+    
+  </div>
+  <div class="col-md-9">
 
 <div class="mb-3">
-  <label for="filterText" class="form-label">Araç Ara</label>
+  
   <input
     type="text"
     [(ngModel)]="filterText"
-    class="form-control"
+    class="form-control p-3"
     id="filterText"
     placeholder="Araç Ara"
   />
@@ -14,7 +93,7 @@
 
 <div class="row">
   <div *ngFor="let car of cars | filterPipe :filterText" class="col-md-4">
-    <div class="card mt-3">
+    <div class="card mt-3 p-3">
      
      
       <div class="card-body">
@@ -26,6 +105,7 @@
         <li class="list-group-item"><b>Rengi : </b>{{car.colorName}}</li>
         <li class="list-group-item"><b>Model Yılı : </b> {{car.modelYear}}</li>
         <li class="list-group-item"><b>Günlük Ücret : </b> {{car.dailyPrice | currency: "TRY":'₺':"2.2-2"}} </li>
+        <li class="list-group-item"><b>Findex Puanı : </b> {{car.findex}}</li>
       </ul>
       <div class="card-footer">
         <div class="btn btn-sm btn-secondary" style="display: block;" routerLink="/cars/{{car.id}}">Araç Detaylarını gör</div> 
@@ -34,7 +114,9 @@
   </div>
 </div>
 
-
+</div>
+   
+</div>
 
 
 

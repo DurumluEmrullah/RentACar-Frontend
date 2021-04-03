@@ -1,15 +1,9 @@
-*{
-  margin: 0;
-}
+
 .body {
     border: 1px solid rgba(0, 0, 0, 0.5);
     min-height: 98vh;
     margin-top: 10px;
     margin-bottom: 10px;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.25);
-  }
-  
-  .content {
-    margin-top: 10px;
   }
   

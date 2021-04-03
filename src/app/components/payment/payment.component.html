@@ -1,50 +1,155 @@
-<div class="card">
-
-    <div class="card-header">
-        Ödeme Detayları
-    </div>
+<div class="container mt-5">
+  <div class="card p-3">
+    <div class="card-header bg-secondary text-white">Ödeme Detayları</div>
 
     <div class="card-body">
-        <ul class="list-group">
-            <li class="list-group-item mb-1">Araç Id : {{car.id}}</li>
-            <li class="list-group-item mb-1">Müşteri Id : {{rental.customerId}}</li>
-            <li class="list-group-item mb-1">Araç Adı : {{car.carName}}</li>
-            <li class="list-group-item mb-1">Araç Markası : {{car.brandName}}</li>
-            <li class="list-group-item mb-1">Renk : {{car.colorName}}</li>
-            <li class="list-group-item mb-1">Günlük Fiyat : {{car.dailyPrice}}</li>
-            <li class="list-group-item mb-1">Model Yılı : {{car.modelYear}}</li>
-            <li class="list-group-item mb-1">Araç Açıklaması : {{car.description}}</li>
-            <li class="list-group-item mb-1">Kiralama Başlngıç Tarihi : {{rental.rentDate}}</li>
-            <li class="list-group-item mb-1">Kiralama Bitiş Tarihi : {{rental.returnDate}}</li>
-            <li class="list-group-item mb-1">Toplam Ücret : {{countOfRentDay| totalPrice:car.dailyPrice |currency:"TRY":"₺"}}</li>
-          </ul>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item mb-1"><b> Araç Id : </b>{{ car.id }}</li>
+        <li class="list-group-item mb-1">
+          <b>Müşteri Id : </b>{{ rental.customerId }}
+        </li>
+        <li class="list-group-item mb-1">
+          <b>Araç Adı :</b> {{ car.carName }}
+        </li>
+        <li class="list-group-item mb-1">
+          <b>Araç Markası : </b>{{ car.brandName }}
+        </li>
+        <li class="list-group-item mb-1"><b>Renk : </b>{{ car.colorName }}</li>
+        <li class="list-group-item mb-1">
+          <b>Günlük Fiyat :</b> {{ car.dailyPrice }}
+        </li>
+        <li class="list-group-item mb-1">
+          <b>Model Yılı : </b>{{ car.modelYear }}
+        </li>
+        <li class="list-group-item mb-1">
+          <b>Araç Açıklaması :</b> {{ car.description }}
+        </li>
+        <li class="list-group-item mb-1">
+          <b>Kiralama Başlngıç Tarihi : </b>{{ rental.rentDate }}
+        </li>
+        <li class="list-group-item mb-1">
+          <b>Kiralama Bitiş Tarihi : </b>{{ rental.returnDate }}
+        </li>
+        <li class="list-group-item mb-1">
+          <b>Findex Puanı : </b>{{ rental.findex }}
+        </li>
+        <li class="list-group-item mb-1">
+          <b>Toplam Ücret :</b>
+          {{
+            countOfRentDay | totalPrice: car.dailyPrice | currency: "TRY":"₺"
+          }}
+        </li>
+      </ul>
+      <hr />
+      <!--   <label for="listOfCreditCards"> Kayıtlı Kredi Kartları</label>
+           <select class="form-select" id="listOfCreditCards" *ngIf="haveCreditCard==true" [(ngModel)]="selectedCard" aria-label="Default select example">
+            <option value="{{creditCard}}" (click)="getCardInformation()" *ngFor="let creditCard of creditCardsResponse">{{creditCard.cardNumber}}</option>
+          </select> -->
 
-          <div class="row mt-3">
-             
-              <div class="col-9">
-                  <input type="text" id="cardNumber" [(ngModel)]="cardNumber" placeholder="Kredi Kartı Numarası"  class="form-control" [ngModelOptions]="{standalone: true}">
-              </div>
-              <div class="col-3">
-                
-                  <input type="text" id="securityCode" [(ngModel)]="securityNumber" placeholder="Güvenlik Kodu" class="form-control">
-              </div>
-              
-              <div class="row mt-3">
-                  <div class="col-4">
-                      Son kullanma Tarihi :
-                  </div>
-                  <div class="col-4">
-                      <input type="text" [(ngModel)]="mounthOfExpirationDate" placeholder="Ay" class="form-control">
-                  </div>
-                  <div class="col-4">
-                    <input type="text" [(ngModel)]="yearOfExpirationDate" placeholder="Yıl" class="form-control" > 
-                </div>
-                <div class="mt-3" style="display: block;">
-                    <button class="btn btn-outline-primary" (click)="doRentOperations()"  style="width: 100%;" >Aracı Kirala </button>
-                </div>
-              </div>
+      <hr />
+      <h3 class="card-title">Kredi Kartı Bilgileri</h3>
+      <hr />
+
+      <div
+        *ngIf="haveCreditCard == true"
+        class="accordion"
+        id="accordionExample"
+      >
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+            <button
+              class="accordion-button"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseOne"
+              aria-expanded="true"
+              aria-controls="collapseOne"
+            >
+              Kayıtlı Kredi Kartları
+            </button>
+          </h2>
+          <div
+            id="collapseOne"
+            class="accordion-collapse collapse show"
+            aria-labelledby="headingOne"
+            data-bs-parent="#accordionExample"
+          >
+            <div class="accordion-body">
+              <ul id="listOfCreditCards list-group">
+                <li
+                  class="list-group-item"
+                  (click)="getCardInformation(creditCard)"
+                  *ngFor="let creditCard of creditCardsResponse"
+                >
+                  {{ creditCard.cardNumber }}
+                </li>
+              </ul>
+            </div>
           </div>
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col-9">
+          <input
+            type="text"
+            id="cardNumber"
+            [(ngModel)]="cardNumber"
+            placeholder="Kredi Kartı Numarası"
+            class="form-control"
+            [ngModelOptions]="{ standalone: true }"
+          />
+        </div>
+        <div class="col-3">
+          <input
+            type="text"
+            id="securityCode"
+            [(ngModel)]="securityNumber"
+            placeholder="Güvenlik Kodu"
+            class="form-control"
+          />
+        </div>
+
+        <div class="row mt-3">
+          <div class="col-4">Son kullanma Tarihi :</div>
+          <div class="col-4">
+            <input
+              type="text"
+              [(ngModel)]="mounthOfExpirationDate"
+              placeholder="Ay"
+              class="form-control"
+            />
+          </div>
+          <div class="col-4">
+            <input
+              type="text"
+              [(ngModel)]="yearOfExpirationDate"
+              placeholder="Yıl"
+              class="form-control"
+            />
+          </div>
+          <div class="mt-3" style="display: block">
+            <button
+              class="btn btn-outline-primary"
+              (click)="doRentOperations()"
+              style="width: 100%"
+            >
+              Aracı Kirala
+            </button>
+          </div>
+          <div class="mt-3 d-flex justify-content-end">
+            <button
+              type="button"
+              *ngIf="isSuccess"
+              class="btn btn-success"
+              (click)="registerCardInformation()"
+              data-bs-dismiss="modal"
+            >
+              Kart Bilgilerimi Kayıt et
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
-
-
+  </div>
 </div>
