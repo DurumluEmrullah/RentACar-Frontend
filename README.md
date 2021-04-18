@@ -39,7 +39,6 @@ npm install
  ![alt text](https://github.com/DurumluEmrullah/Recap-Frontend/blob/master/image/20.png)
  ![alt text](https://github.com/DurumluEmrullah/Recap-Frontend/blob/master/image/21.png)
  ![alt text](https://github.com/DurumluEmrullah/Recap-Frontend/blob/master/image/22.png)
- ![alt text](https://github.com/DurumluEmrullah/Recap-Frontend/blob/master/image/23.png)
 
 
 
