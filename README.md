@@ -12,6 +12,15 @@ C# programlama dili ile yazmış olduğum olan [Backend](https://github.com/Duru
 ```bash
 npm install
 ```
+
+
+## Projenin Çalışması için
+
+```bash
+ng serve --open(opsiyonel) --port portNumber(opsiyonel)
+```
+
+
  Bu komut sayesinde projenin kullandığı paketler package.json klasoründen okunarak projeye dahil edilecek.
  
  
