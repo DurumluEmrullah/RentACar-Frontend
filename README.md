@@ -14,6 +14,10 @@ npm install
 ```
  Bu komut sayesinde projenin kullandığı paketler package.json klasoründen okunarak projeye dahil edilecek.
  
+ 
+ ## Proje ekran görüntüleri
+ 
+ ![alt text](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)
 
 
 
