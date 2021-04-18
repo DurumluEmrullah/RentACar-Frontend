@@ -1,7 +1,7 @@
 # RecapFrontEnd
 
-Bu proje [Angular CLI](https://github.com/angular/angular-cli) version 11.2.4.
-Daha önceden hazırlanmış olan [Backend](https://github.com/DurumluEmrullah/ReCapProject) kullanılmıştır. 
+Bu proje [Angular CLI](https://github.com/angular/angular-cli) version 11.2.4.<br>
+C# programlama dili ile yazmış olduğum olan [Backend](https://github.com/DurumluEmrullah/ReCapProject) kullanılmıştır. 
 
 ## Proje Hakkında
 
